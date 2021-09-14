@@ -6,13 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import {ColorModeScript, ChakraProvider} from '@chakra-ui/react';
 import './index.css';
 import App from './App';
+import { extendTheme } from "@chakra-ui/react"
+import { theme as chakraTheme } from '@chakra-ui/react'
+import {Fonts} from 'common/util/Fonts'
 
 const customHistory = createBrowserHistory();
-
+const theme = extendTheme({
+  fonts: {
+    ...chakraTheme.fonts,
+    heading: "ng",
+    body: "Raleway",
+  },
+})
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider>
-      <ColorModeScript initialColorMode="light" />
+    <ChakraProvider theme={theme}>
+      <Fonts />
+      <ColorModeScript initialColorMode="dark" />
       <App customHistory={customHistory} />
     </ChakraProvider>
   </React.StrictMode>,

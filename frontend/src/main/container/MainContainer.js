@@ -1,5 +1,5 @@
 import React, {useState, useEffect,useRef} from 'react';
-import { Circle, Flex, Link, Stack, Text, VStack} from '@chakra-ui/layout';
+import { Circle, Flex, Heading, Link, Stack, Text, VStack} from '@chakra-ui/layout';
 import { Button, Divider, Box, SlideFade, ScaleFade, Icon } from '@chakra-ui/react';
 import {useMediaQuery} from '@chakra-ui/media-query';
 import {useColorMode} from "@chakra-ui/color-mode";
@@ -25,9 +25,9 @@ function Home() {
       >
         <SlideFade  offsetY="200px" in={true}>
         <Box ml={isSmallScreen ? "25%" : "0"} position="absolute" mt={16} align="flex-start" >
-            <Text ml={3} fontSize={isSmallScreen ? "5xl":"4xl"} fontWeight="semibold" >
+            <Heading ml={3} fontSize={isSmallScreen ? "5xl":"4xl"} fontWeight="semibold" fonts="heading">
                 안녕하세요
-            </Text>
+            </Heading>
             <Text fontSize={isSmallScreen ? "7xl":"6xl"} fontWeight="bold" bgGradient="linear(to-r, blue.500, blue.400, gray.300)" bgClip="text">
                 인천만석비치타운
             </Text>
@@ -39,16 +39,17 @@ function Home() {
         
         <SlideFade  offsetY="200px" in={true}>
         <Flex position="absolute" direction={isPhoneScreen ? "column" : isSmallScreen ? "row": "column" } w={isPhoneScreen ? "30%" : isSmallScreen ? "100%": "40%"} mt={isPhoneScreen ? "150" : "400"} ml={isPhoneScreen ? "85%" : "5%"} >
-          <Button mb={5} mr={isPhoneScreen ? "0" : "5"} w={"100%"} bgColor="#fef01b" color="black" _hover={{ bg: "#ebedf0" }} leftIcon={<RiKakaoTalkFill />}>
-            <Link href="#">
-            카카오톡 오픈 채팅방
-            </Link>
-          </Button>
-          <Button w={"100%"} bgColor="#2db400" color="black" _hover={{ bg: "#ebedf0" }} leftIcon={<MdLocalCafe />}>
-            <Link href="https://cafe.naver.com/manbimo" isExternal>
-            네이버 '만비모' 카페
-            </Link>
-          </Button>
+          <Link  mb={5} mr={isPhoneScreen ? "0" : isSmallScreen? "5" : "0"} w={"100%"} href="https://open.kakao.com/o/gUJemfod" isExternal >
+            <Button  w={"100%"} bgColor="#fef01b" color="black" _hover={{ bg: "#ebedf0" }} leftIcon={<RiKakaoTalkFill />}>
+              
+              카카오톡 오픈 채팅방
+            </Button>
+          </Link>
+          <Link w={"100%"}  href="https://cafe.naver.com/manbimo" isExternal>
+            <Button w={"100%"} bgColor="#2db400" color="black" _hover={{ bg: "#ebedf0" }} leftIcon={<MdLocalCafe />}>
+              네이버 '만비모' 카페
+            </Button>
+          </Link>
         </Flex>
         </SlideFade>
       </Flex>
