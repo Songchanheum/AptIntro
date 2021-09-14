@@ -21,7 +21,6 @@ function App({ customHistory }) {
   return (
     <>
       <Router history={customHistory}>
-        <Header />
         <Suspense fallback={<></>}>
             <Route
                 path={`${process.env.PUBLIC_URL}/main`}
