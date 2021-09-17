@@ -41,7 +41,6 @@ function Home() {
         <Flex position="absolute" direction={isPhoneScreen ? "column" : isSmallScreen ? "row": "column" } w={isPhoneScreen ? "30%" : isSmallScreen ? "100%": "40%"} mt={isPhoneScreen ? "150" : "400"} ml={isPhoneScreen ? "85%" : "5%"} >
           <Link  mb={5} mr={isPhoneScreen ? "0" : isSmallScreen? "5" : "0"} w={"100%"} href="https://open.kakao.com/o/gUJemfod" isExternal >
             <Button  w={"100%"} bgColor="#fef01b" color="black" _hover={{ bg: "#ebedf0" }} leftIcon={<RiKakaoTalkFill />}>
-              
               카카오톡 오픈 채팅방
             </Button>
           </Link>
