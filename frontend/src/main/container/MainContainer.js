@@ -56,8 +56,8 @@ function Home() {
       <Box
         w='1920'
         h='1080'
-        backgroundImage={BackgroundImg}
-        backgroundPosition="center"
+        bgImage={BackgroundImg}
+        bgPosition="center"
         bgSize="cover"
         bgAttachment="fixed"
         zIndex={'auto'}
