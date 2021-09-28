@@ -1,9 +1,8 @@
 import React, {useState, useEffect,useRef} from 'react';
-import { Circle, Flex, Heading, Link, Stack, Text, VStack} from '@chakra-ui/layout';
-import { Button, Divider, Box, SlideFade, ScaleFade, Icon, IconButton } from '@chakra-ui/react';
+import { Circle, Flex, Heading, HStack,VStack, Link, Stack, Text} from '@chakra-ui/layout';
+import { Button, Divider, Box, SlideFade, ScaleFade, Icon, IconButton, Fade, useDisclosure, Select, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
 import {useMediaQuery} from '@chakra-ui/media-query';
 import {useColorMode} from "@chakra-ui/color-mode";
-import * as MainService from '../service/MainService';
 import BackgroundImg from "../../image/background.png";
 import { RiKakaoTalkFill } from "react-icons/ri"
 import { MdLocalCafe } from "react-icons/md"
@@ -12,7 +11,7 @@ import { FaSun, FaMoon} from 'react-icons/fa';
 function Home() {
   const { colorMode, toggleColorMode} = useColorMode();
   const isDark = colorMode === "dark";
-
+  const { isOpen, onToggle } = useDisclosure();
   const [isSmallScreen] = useMediaQuery('(min-width:1000px)');
   const [isPhoneScreen] = useMediaQuery('(min-width:1300px)');
   const [isSmaller] = useMediaQuery('(min-width:390px)');
@@ -24,7 +23,6 @@ function Home() {
     bgAttachment="fixed"
     zIndex={'auto'}>
       <Flex w="100%" p={2} align="center">
-        
         <IconButton alignSelf="flex-end" mr={4} icon={ isDark ? <FaSun /> : <FaMoon />} isRound={true} onClick={toggleColorMode} aria-label="dark"></IconButton>
       </Flex>
       <Circle ml={isSmallScreen ? "10%" : "2%"} position="absolute" bg={isDark?"blue.100":"blue.300"} opacity={isDark?"0.1":"0.3"} w="300px" h="300px" alignSelf="center" zIndex={900}/>
@@ -62,12 +60,49 @@ function Home() {
           </Link>
         </Flex>
         </SlideFade>
+        <Flex w={isPhoneScreen ? "60%" : isSmallScreen ? "80%": "100%" } mt="100" direction="column" alignSelf="center" ml={isPhoneScreen ? "13%" : "0%"}>
+          <Text fontSize={isSmallScreen ? "3xl":"2xl"} fontWeight="semibold" alignSelf={"center"} mb={10}>
+            소개페이지 입장
+          </Text>
+          <Flex w={"100%"} ml={5}>
+            <Button w={"45%"} onClick={onToggle}>입주민 입니다.</Button>
+            <Link href={`${process.env.PUBLIC_URL}/intro`} w={"45%"} ml={5} >
+              <Button w={"100%"}>방문객 입니다.</Button>
+            </Link>
+          </Flex>
+          <Fade in={isOpen}>
+            <Flex w={"100%"} direction={"column"}>
+              <HStack pt="10" pl="10" pr="10" pb="2">
+                <Select variant="outline" placeholder="동 선택" >
+                  <option value="1">101동</option>
+                  <option value="2">102동</option>
+                  <option value="3">103동</option>
+                  <option value="4">104동</option>
+                  <option value="5">105동</option>
+                  <option value="6">106동</option>
+                  <option value="7">107동</option>
+                  <option value="8">108동</option>
+                  <option value="9">109동</option>
+                  <option value="10">110동</option>
+                  <option value="11">111동</option>
+                  <option value="12">112동</option>
+                  <option value="13">113동</option>
+                  <option value="14">114동</option>
+                  <option value="15">115동</option>
+                </Select>
+                <InputGroup size="sm">
+                <Input placeholder="호수 입력" />
+                <InputRightElement children="호" />
+                </InputGroup>
+              </HStack>
+              <Link  pl="10" pr="10" align={"center"} href={`${process.env.PUBLIC_URL}/intro?`}>
+                <Button w={"100%"}> 입장</Button>
+              </Link>
+            </Flex>
+          </Fade>
+        </Flex>
       </Flex>
-      <Flex w={"100%"} mt="100" direction="column">
-        <Text fontSize={isSmallScreen ? "3xl":"2xl"} fontWeight="semibold" orientation="vertical" alignSelf={"center"} as="abbr">
-          입주민이신가요?
-        </Text>
-      </Flex>
+      
     </Box>
   ) 
 }
