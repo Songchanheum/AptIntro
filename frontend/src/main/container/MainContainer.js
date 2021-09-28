@@ -4,7 +4,7 @@ import { Button, Divider, Box, SlideFade, ScaleFade, Icon, IconButton } from '@c
 import {useMediaQuery} from '@chakra-ui/media-query';
 import {useColorMode} from "@chakra-ui/color-mode";
 import * as MainService from '../service/MainService';
-import BackgroundImg from "../../image/background.jpg";
+import BackgroundImg from "../../image/background.png";
 import { RiKakaoTalkFill } from "react-icons/ri"
 import { MdLocalCafe } from "react-icons/md"
 import { FaSun, FaMoon} from 'react-icons/fa';
@@ -15,35 +15,41 @@ function Home() {
 
   const [isSmallScreen] = useMediaQuery('(min-width:1000px)');
   const [isPhoneScreen] = useMediaQuery('(min-width:1300px)');
+  const [isSmaller] = useMediaQuery('(min-width:390px)');
   return (
-    <>
+    <Box
+    bgImage={BackgroundImg}
+    bgPosition="center"
+    bgSize="cover"
+    bgAttachment="fixed"
+    zIndex={'auto'}>
       <Flex w="100%" p={2} align="center">
         
         <IconButton alignSelf="flex-end" mr={4} icon={ isDark ? <FaSun /> : <FaMoon />} isRound={true} onClick={toggleColorMode} aria-label="dark"></IconButton>
       </Flex>
-      <Circle ml={"10%"} position="absolute" bg={isDark?"blue.100":"blue.300"} opacity={isDark?"0.1":"0.3"} w="300px" h="300px" alignSelf="center" zIndex={900}/>
+      <Circle ml={isSmallScreen ? "10%" : "2%"} position="absolute" bg={isDark?"blue.100":"blue.300"} opacity={isDark?"0.1":"0.3"} w="300px" h="300px" alignSelf="center" zIndex={900}/>
       <Flex
           w="100%" h="100%"
-          direction={isSmallScreen ? "row" : "column"}
+          direction={isPhoneScreen ? "row" : "column" }
           p={isSmallScreen ? "32" : "0"}
           alignSelf="center" zIndex={999}
       >
         <SlideFade offsetY="200px" in={true}>
         <Box ml={isSmallScreen ? "25%" : "0"} mt={16} align="flex-start"  w={isSmallScreen ?"600px":"100%"}>
-            <Heading ml={isSmallScreen ? 3 : 10} fontSize={isSmallScreen ? "5xl":"4xl"} fontWeight="semibold" fonts="heading">
+            <Heading ml={isSmallScreen ? 3 : 10} fontSize={isSmallScreen ? "5xl":isSmaller?"5xl":"3xl"} fontWeight="semibold" fonts="heading">
                 안녕하세요
             </Heading>
-            <Text fontSize={isSmallScreen ? "7xl":"5xl"} align={isSmallScreen ? "right":"center"} fontWeight="bold" bgGradient="linear(to-r, blue.500, blue.400, gray.300)" bgClip="text">
+            <Text fontSize={isSmallScreen ? "7xl": isSmaller?"5xl":"4xl"} align={isSmallScreen ? "right":"center"} fontWeight="bold" bgGradient="linear(to-r, blue.500, blue.400, gray.300)" bgClip="text" noOfLines={1}>
                 인천만석비치타운
             </Text>
-            <Text p={isSmallScreen ? "5":"5"} fontSize={isSmallScreen ? "3xl":"2xl"} fontWeight="semibold" orientation="vertical" align={isSmallScreen ? "right":"center"}>
+            <Text p={isSmallScreen ? "5":isSmaller?"5":"0"} fontSize={isSmallScreen ? "3xl":"2xl"} fontWeight="semibold" orientation="vertical" align={isSmallScreen ? "right":"center"}>
                 입주민 홍보 페이지 입니다.
             </Text>
         </Box>
         </SlideFade>
         
         <SlideFade offsetY="200px" in={true}>
-        <Flex  direction={isPhoneScreen ? "column" : isSmallScreen ? "row": "column" } w={isPhoneScreen ? "100%" : "90%"} mt={"150"} ml={isPhoneScreen ? "85%" : "5%"}>
+        <Flex  direction={isPhoneScreen ? "column" : isSmallScreen ? "row": "column" } w={isPhoneScreen ? "100%" : "90%"} mt={isPhoneScreen ? "150" : "100"} ml={isPhoneScreen ? "85%" : "5%"}>
           <Link  mb={5} mr={isPhoneScreen ? "0" : isSmallScreen? "5" : "0"} w={"100%"} href="https://open.kakao.com/o/gUJemfod" isExternal >
             <Button  w={"100%"} bgColor="#fef01b" color="black" _hover={{ bg: "#ebedf0" }} leftIcon={<RiKakaoTalkFill />}>
               카카오톡 오픈 채팅방
@@ -57,19 +63,12 @@ function Home() {
         </Flex>
         </SlideFade>
       </Flex>
-
-      <Box
-        w={1920}
-        h={1080}
-        position="absolute"
-        bgImage={BackgroundImg}
-        bgPosition="center"
-        bgSize="cover"
-        bgAttachment="fixed"
-        zIndex={'auto'}
-        opacity={0.2}
-      />
-    </>
+      <Flex w={"100%"} mt="100" direction="column">
+        <Text fontSize={isSmallScreen ? "3xl":"2xl"} fontWeight="semibold" orientation="vertical" alignSelf={"center"} as="abbr">
+          입주민이신가요?
+        </Text>
+      </Flex>
+    </Box>
   ) 
 }
 export default Home; 
