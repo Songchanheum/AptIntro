@@ -9,6 +9,7 @@ const Component = React.LazyExoticComponent;
 const Main = React.lazy(() => import('./main/container/MainContainer'));
 const Menu1 = React.lazy(() => import('./main/container/Menu1'));
 const Menu2 = React.lazy(() => import('./main/container/Menu2'));
+const Introduce = React.lazy(() => import('./main/component/Introduce'));
 
 function check(props) {
     return <Component />;
@@ -44,6 +45,14 @@ function App({ customHistory }) {
                     <Menu2 {...{
                         ...renderProp
                     }}></Menu2>
+                )}
+            />
+            <Route
+                path={`${process.env.PUBLIC_URL}/intro`}
+                render={(renderProp) => (
+                    <Introduce {...{
+                        ...renderProp
+                    }}></Introduce>
                 )}
             />
         </Suspense>

@@ -17,11 +17,11 @@ function Home() {
   const [isSmaller] = useMediaQuery('(min-width:390px)');
   return (
     <Box
-    bgImage={BackgroundImg}
-    bgPosition="center"
-    bgSize="cover"
-    bgAttachment="fixed"
-    zIndex={'auto'}>
+      bgImage={BackgroundImg}
+      bgPosition="center"
+      bgSize="cover"
+      bgAttachment="fixed"
+      zIndex={'auto'}>
       <Flex w="100%" p={2} align="center">
         <IconButton alignSelf="flex-end" mr={4} icon={ isDark ? <FaSun /> : <FaMoon />} isRound={true} onClick={toggleColorMode} aria-label="dark"></IconButton>
       </Flex>
@@ -64,10 +64,10 @@ function Home() {
           <Text fontSize={isSmallScreen ? "3xl":"2xl"} fontWeight="semibold" alignSelf={"center"} mb={10}>
             소개페이지 입장
           </Text>
-          <Flex w={"100%"} ml={5}>
-            <Button w={"45%"} onClick={onToggle}>입주민 입니다.</Button>
-            <Link href={`${process.env.PUBLIC_URL}/intro`} w={"45%"} ml={5} >
-              <Button w={"100%"}>방문객 입니다.</Button>
+          <Flex w={"100%"} ml={"5%"}>
+            <Button w={"42%"} onClick={onToggle} bg={!isDark?"blue.100":"blue.300"}>입주민 입니다.</Button>
+            <Link href={`${process.env.PUBLIC_URL}/intro`} w={"42%"} ml={"5%"} >
+              <Button w={"100%"} bg={!isDark?"blue.100":"blue.300"}>방문객 입니다.</Button>
             </Link>
           </Flex>
           <Fade in={isOpen}>
@@ -95,8 +95,8 @@ function Home() {
                 <InputRightElement children="호" />
                 </InputGroup>
               </HStack>
-              <Link  pl="10" pr="10" align={"center"} href={`${process.env.PUBLIC_URL}/intro?`}>
-                <Button w={"100%"}> 입장</Button>
+              <Link  pl="10" pr="10" pb="10" align={"center"} href={`${process.env.PUBLIC_URL}/intro?`}>
+                <Button w={"100%"} bg={!isDark?"blue.100":"blue.300"}> 입장</Button>
               </Link>
             </Flex>
           </Fade>
