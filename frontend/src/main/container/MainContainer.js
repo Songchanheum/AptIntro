@@ -90,7 +90,7 @@ function Home() {
                   <option value="14">114동</option>
                   <option value="15">115동</option>
                 </Select>
-                <InputGroup size="sm">
+                <InputGroup variant="outline" size="md">
                 <Input placeholder="호수 입력" />
                 <InputRightElement children="호" />
                 </InputGroup>
